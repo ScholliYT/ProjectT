@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Superclass of all scrolling actors (all except Player)
  * 
- * @author Nigel Cunliffe
+ * @author Nico,Felix, Simon
  * @version 1.0
  */
 public class Scroller extends Actor
