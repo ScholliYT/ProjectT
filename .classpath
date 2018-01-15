@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files (x86)/Greenfoot/lib/bluejcore.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files (x86)/Greenfoot/lib/extensions/greenfoot.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Greenfoot/lib/bluejcore.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Greenfoot/lib/extensions/greenfoot.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://www.greenfoot.org/files/javadoc/"/>
 		</attributes>
