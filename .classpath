@@ -5,7 +5,7 @@
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Greenfoot/lib/bluejcore.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Program Files/Greenfoot/lib/extensions/greenfoot.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="https://www.greenfoot.org/files/javadoc/"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/NKranz/Desktop/doc.zip!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path=""/>
