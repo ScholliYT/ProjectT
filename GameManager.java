@@ -12,4 +12,9 @@ public class GameManager extends World
     {    
         super(600, 400, 1); 
     }
+    
+    public void act()
+    {
+    	this.addObject(new Scroller(), 0, 0);
+    }
 }
