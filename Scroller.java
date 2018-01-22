@@ -3,16 +3,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Superclass of all scrolling actors (all except Player)
  * 
- * @author Nico,Felix, Simon
+ * @author (Felix, Simon, Nico)
  * @version 1.0
  */
 public class Scroller extends Actor
 {
-    public static int scrollX; //The variable used when scrolling.
+    public static int sX; 
 
     public Scroller()
     {
-        scrollX = 0;
+        sX = 0;
     }
 
     /**
@@ -20,7 +20,7 @@ public class Scroller extends Actor
      */
     public void setLocation()
     {
-        setLocation(getX() + scrollX, getY());
+        setLocation(getX() + sX, getY());
     }
 
     /**
@@ -32,20 +32,20 @@ public class Scroller extends Actor
         
         if(Greenfoot.isKeyDown("left") &! Greenfoot.isKeyDown("right"))
         {
-            scrollX = amount;
+            sX = amount;
 
             if(Greenfoot.isKeyDown("z"))
             {
-                scrollX = amount + 2; // world will scroll faster if z is pressed while moving
+                sX = amount + 2; // world will scroll faster if z is pressed while moving
             }
         }
         else if(Greenfoot.isKeyDown("right") &! Greenfoot.isKeyDown("left"))
         {
-            scrollX = -amount;
+            sX = -amount;
 
             if(Greenfoot.isKeyDown("z"))
             {
-                scrollX = -amount - 2; // world will scroll faster if z is pressed while moving
+                sX = -amount - 2; // world will scroll faster if z is pressed while moving
             }
         }
         else
@@ -65,6 +65,6 @@ public class Scroller extends Actor
 
     public static void stopScroll()
     {
-        scrollX = 0;
+        sX = 0;
     }
 }
