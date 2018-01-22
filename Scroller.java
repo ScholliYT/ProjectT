@@ -34,19 +34,10 @@ public class Scroller extends Actor
         {
             sX = amount;
 
-            if(Greenfoot.isKeyDown("z"))
-            {
-                sX = amount + 2; // world will scroll faster if z is pressed while moving
-            }
         }
         else if(Greenfoot.isKeyDown("right") &! Greenfoot.isKeyDown("left"))
         {
             sX = -amount;
-
-            if(Greenfoot.isKeyDown("z"))
-            {
-                sX = -amount - 2; // world will scroll faster if z is pressed while moving
-            }
         }
         else
         {
