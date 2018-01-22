@@ -6,19 +6,27 @@ public class Plattform extends Scroller {
     private double velocityX; // in pixels per act() call
     private double velocityY; // in pixels per act() call
     private int state;
-	public void act()
-	{
-		scrollingMethods();
-	}
+    
 
 	public Plattform()
-	{}
+	{
+		setImage(new GreenfootImage("images/grass_test.png"));
+		getImage().scale(32, 32);
+	}
 	
 	public Plattform(double newVelocityX, double newVelocityY)
     {
         velocityX = newVelocityX;
         velocityY = newVelocityY;
+
+		setImage(new GreenfootImage("images/grass_test.png"));
+		getImage().scale(16, 16);
     }
+	
+	public void act()
+	{
+		scrollingMethods();
+	}
 	public void move()
 	{
 		setLocation(x + velocityX, y + velocityY);

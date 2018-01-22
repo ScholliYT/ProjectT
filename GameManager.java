@@ -10,11 +10,15 @@ public class GameManager extends World
 {
     public GameManager()
     {    
-        super(600, 400, 1); 
+        super(800, 600, 1); 
     }
     
     public void act()
     {
     	this.addObject(new Scroller(), 0, 0);
+    	for(int i = 0; i < 400; i = i + 32)
+    	{
+    		this.addObject(new Plattform(), i, 200);
+    	}
     }
 }
