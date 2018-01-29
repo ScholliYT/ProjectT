@@ -4,8 +4,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The main character. Responds to certain keys.
  * Jumps around killing stuff and avoids being killed
  *
- * @author Ed Parrish
- * @author Nigel Cunliffe
  * @version 1.3 12/5/11
  */
 public class Player extends Sprite
@@ -38,16 +36,9 @@ public class Player extends Sprite
         checkKeys();
         checkCollisionHorizontal();
         manageJumping();
-        checkBounce();
-        removeGate();
-        checkKillers();
-        checkCoins();
-        addLife();
-        boardMove();
-        platformMove();
+
         //slide();
         move();
-        win();
     }
 
     /**
@@ -69,10 +60,12 @@ public class Player extends Sprite
         {
             stopMoving();
             if(direction == RIGHT) {
-                setImage("standing.gif");
+            	setImage(new GreenfootImage("images/Player.png"));
+        		getImage().scale(32, 32);
             }
             if(direction == LEFT) {
-                setImage("standingleft.gif");
+            	setImage(new GreenfootImage("images/Player.png"));
+        		getImage().scale(32, 32);
             }
         }
         if (Greenfoot.isKeyDown("up"))
@@ -82,7 +75,7 @@ public class Player extends Sprite
 
         if (Greenfoot.isKeyDown("space") && counter > reloadCount)
         {
-            fire();
+            playsound();
             counter = 0;
         }
         counter++;
@@ -108,13 +101,16 @@ public class Player extends Sprite
         setVelocityX(runSpeed);
         imageCount++;
         if(imageCount <= 1){
-            setImage("run3.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
         }
         if(imageCount == 11){
-            setImage("run1.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
         }
         if(imageCount == 21){
-            setImage("run3.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
             imageCount = 0;
         }
     }
@@ -127,13 +123,16 @@ public class Player extends Sprite
         setVelocityX(-runSpeed);
         imageCount++;
         if(imageCount <= 1){
-            setImage("run3left.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
         }
         if(imageCount == 11){
-            setImage("run1left.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
         }
         if(imageCount == 21){
-            setImage("run3left.gif");
+        	setImage(new GreenfootImage("images/Player.png"));
+    		getImage().scale(32, 32);
             imageCount = 0;
         }
     }
@@ -149,37 +148,7 @@ public class Player extends Sprite
     /**
      * Create a bullet and move it in the direction that the actor is facing
      */
-    public void fire(){
-        if(direction == RIGHT){
-            ((GameManager)getWorld()).addBulletRight(getX()+30, getY());
-        }
-        if(direction == LEFT){
-            ((GameManager)getWorld()).addBulletLeft(getX()-30, getY());
-        }
-    }
 
-    public void platformMove()
-    {
-        if(onThis(HoverBoard.class))
-        {
-            if(Greenfoot.isKeyDown("d"))
-            {
-                move(2);
-            }
-            if(Greenfoot.isKeyDown("a"))
-            {
-                move(-2);
-            }
-            if(Greenfoot.isKeyDown("w"))
-            {
-                stopMoving();
-            }
-            if(Greenfoot.isKeyDown("s"))
-            {
-                stopMoving();
-            }
-        }
-    }
 
     /**
      * Perform a jump.
@@ -211,7 +180,7 @@ public class Player extends Sprite
             lookY = (int) (velocityY + GRAVITY - getHeight() / 2);
         }
         // Check for vertical collision this cycle
-        Actor tile = getOneObjectAtOffset(0, lookY, Platform.class);
+        Actor tile = getOneObjectAtOffset(0, lookY, Plattform.class);
         if (tile == null) {
             // No collision this cycle
             applyGravity();
@@ -278,7 +247,7 @@ public class Player extends Sprite
         {
             lookX = (int) velocityX + getWidth() / 2;
         }
-        Actor a = getOneObjectAtOffset(lookX, 0, Platform.class);
+        Actor a = getOneObjectAtOffset(lookX, 0, Plattform.class);
         if (a != null) {
             moveToContactHorizontal(a);
             stopMoving();
@@ -314,24 +283,11 @@ public class Player extends Sprite
     /**
      * jumpForce = 28 if on Spring.class
      */
-    public void checkBounce(){       
-
-        if(onThis(Spring.class)){
-            jumpForce = 28;
-        }else{
-            jumpForce = 14;
-        }
-    }
+    
 
     /**
      * Remove ending gates when button is pressed
      */
-    public void removeGate()
-    {
-        if(onThis(Button.class)){
-            ((GameManager)getWorld()).removeGate1();
-        }
-    }
 
     public void changeSpeed(double amount)
     {
@@ -341,75 +297,7 @@ public class Player extends Sprite
     /**
      * check for things that kill the player
      */
-    public void checkKillers()
-    {
-        GameManager world = (GameManager) getWorld();
-
-        if(canSee(ENEMIES.class))
-        {
-            setLocation(75, -300);
-            world.subtractLife(1);
-            //Greenfoot.playSound("scream.wav");
-        }
-
-        if (getY() + getHeight() / 2 > getWorld().getHeight())
-        {
-            setLocation(75, -300);
-            world.subtractLife(1);
-            //Greenfoot.playSound("scream.wav");
-        }
-    }
-
-    public void checkCoins()
-    {
-        GameManager world = (GameManager) getWorld();
-        if(canSee(Coin.class))
-        {
-            //Greenfoot.playSound("ding.wav");
-            delete(Coin.class);
-            world.addToScore(1);
-        }
-    }
-
-    /**
-     * Add a new level when PLayer reaches Sign
-     */
-    public void win(){
-        Actor finish = getOneIntersectingObject(Sign.class);
-        if(canSee(Sign.class)||canSee(SignNS.class)){
-            //add sound
-            ((GameManager)getWorld()).addMap();
-        }
-    }
-
-    /**
-     * Add life when player reaches lifeIcon
-     */
-    public void addLife() {
-        Actor actor = this.getOneIntersectingObject(Actor.class);
-        Actor lifeIcon = getOneIntersectingObject(LivesIcon2.class);
-        if(actor instanceof LivesIcon2){             
-            GameManager world = (GameManager) getWorld();
-
-            world.addLife(1);
-            //Greenfoot.playSound("1up.wav");
-        }
-        getWorld().removeObject(lifeIcon);
-
-    }
-
-    public void boardMove()
-    {
-        if(onThis(Board.class)&!byThis(Platform.class))
-        {
-            move(3);
-        }
-        if(onThis(Board2.class)&!byThis2(Platform.class))
-        {
-            move(-3);
-        }
-    }
-
+   
     /**
      * Move this Actor into contact with the specified Actor in the
      * horizontal (x) direction.
@@ -430,4 +318,7 @@ public class Player extends Sprite
         }
         setLocation(newX, getY());
     }
+    public void playsound()
+    {}
+    
 }

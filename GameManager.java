@@ -18,8 +18,10 @@ public class GameManager extends World
     		this.addObject(new Plattform(), i, 300);
     		i += 32;
     	} while(i < 832);
+    	this.addObject(new Sprite(), 0, 0);
+    	this.addObject(new Player(), 20, 0);
+    	
     }
-    
     public void act()
     {
     }
