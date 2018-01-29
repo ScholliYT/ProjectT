@@ -11,7 +11,8 @@ public class GameManager extends World
     public GameManager()
     {    
         super(880, 720, 1); 
-    	this.addObject(new Scroller(), 0, 0);
+    	setBackground("sky.png");
+        this.addObject(new Scroller(), 0, 0);
     	int i = 0;
     	do
     	{
