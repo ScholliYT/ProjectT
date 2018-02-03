@@ -46,12 +46,12 @@ public class Player extends Sprite
      */
     public void checkKeys()
     {
-        if (Greenfoot.isKeyDown("right") &! (Greenfoot.isKeyDown("left")))
+        if (Greenfoot.isKeyDown("right") && !(Greenfoot.isKeyDown("left")))
         {
             direction = RIGHT;
             runRight();
         }
-        else if (Greenfoot.isKeyDown("left") &! (Greenfoot.isKeyDown("right")))
+        else if (Greenfoot.isKeyDown("left") && !(Greenfoot.isKeyDown("right")))
         {
             direction = LEFT;
             runLeft();
@@ -63,7 +63,7 @@ public class Player extends Sprite
             	setImage(new GreenfootImage("images/Player.png"));
         		getImage().scale(32, 32);
             }
-            if(direction == LEFT) {
+            else if(direction == LEFT) {
             	setImage(new GreenfootImage("images/Player.png"));
         		getImage().scale(32, 32);
             }
